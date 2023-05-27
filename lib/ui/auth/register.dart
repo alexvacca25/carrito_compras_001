@@ -16,8 +16,8 @@ class Register extends StatelessWidget {
         title: const Text('Crear Cuenta'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const CircleAvatar(
               radius: 80,
@@ -68,12 +68,10 @@ class Register extends StatelessWidget {
                       .crearUser(
                           txtnombre.text, txtusername.text, txtpassword.text)
                       .then((value) {
-                    Get.snackbar(
-                        'Usuarios', controlu.listaMensajes![0].mensaje,
+                    Get.snackbar('Usuarios', controlu.listaMensajes![0].mensaje,
                         duration: const Duration(seconds: 4),
                         icon: const Icon(Icons.info),
-                        backgroundColor: Colors.yellow  
-                        );
+                        backgroundColor: Colors.yellow);
                   });
                 },
                 child: const Text('Crear Cuenta')),

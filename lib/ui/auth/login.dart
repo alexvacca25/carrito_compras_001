@@ -1,3 +1,4 @@
+import 'package:carrito_compras/domain/controller/controlerUser.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,6 +7,9 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ControlUser controlu = Get.find();
+    TextEditingController txtusername = TextEditingController();
+    TextEditingController txtpassword = TextEditingController();
     return Scaffold(
       body: Center(
         child: Column(
@@ -20,6 +24,7 @@ class Login extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
+                controller: txtusername,
                 decoration: InputDecoration(
                     fillColor: Colors.grey.shade100,
                     filled: true,
@@ -31,6 +36,7 @@ class Login extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
+                controller: txtpassword,
                 obscureText: true,
                 decoration: InputDecoration(
                     fillColor: Colors.grey.shade100,
@@ -40,7 +46,22 @@ class Login extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10))),
               ),
             ),
-            OutlinedButton(onPressed: () {}, child: const Text('Ingresar')),
+            OutlinedButton(
+                onPressed: () {
+                  controlu
+                      .validarUser(txtusername.text, txtpassword.text)
+                      .then((value) {
+                    if (controlu.listaUser!.isNotEmpty) {
+                      Get.toNamed('/articulos');
+                    } else {
+                      Get.snackbar('Usuarios', "Usuario no Encontrado",
+                          duration: const Duration(seconds: 4),
+                          icon: const Icon(Icons.info),
+                          backgroundColor: Colors.blue);
+                    }
+                  });
+                },
+                child: const Text('Ingresar')),
             const SizedBox(
               height: 30,
             ),

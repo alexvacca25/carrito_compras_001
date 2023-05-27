@@ -1,5 +1,6 @@
 import 'package:carrito_compras/ui/auth/login.dart';
 import 'package:carrito_compras/ui/auth/register.dart';
+import 'package:carrito_compras/ui/content/Articulos/lista.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,6 +17,7 @@ class App extends StatelessWidget {
       routes: {
         "/login": (context) => const Login(),
         "/register": (context) => const Register(),
+        "/articulos": (context) => const Articulos(),
       },
     );
   }
